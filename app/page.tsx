@@ -11,88 +11,186 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Home() {
   const heroRef = useRef(null);
   const imagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero content animations
-      gsap.from(".hero-content > *", {
+      // Initial page load animation sequence
+      const tl = gsap.timeline();
+      
+      // Fade out overlay
+      tl.to(overlayRef.current, {
         opacity: 0,
-        y: 30,
-        duration: 1,
-        stagger: 0.15,
-        ease: "power3.out",
+        duration: 0.8,
+        ease: "power2.inOut",
       });
 
-      // Create horizontal scroll animation for hero images
+      // Hero content animations with stagger
+      tl.from(".hero-badge", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power3.out",
+      })
+      .from(".hero-title", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power3.out",
+      }, "-=0.3")
+      .from(".hero-subtitle", {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        ease: "power3.out",
+      }, "-=0.5")
+      .from(".hero-buttons", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power3.out",
+      }, "-=0.4")
+      .from(".hero-visual", {
+        opacity: 0,
+        y: 40,
+        scale: 0.95,
+        duration: 0.8,
+        ease: "power3.out",
+      }, "-=0.4");
+
+      // Create complex parallax animation for hero images
       imagesRef.current.forEach((img, index) => {
         if (!img) return;
         
-        // Each image slides horizontally across the screen on scroll
-        gsap.fromTo(img, 
-          {
-            x: index % 2 === 0 ? '100%' : '-100%',
-            opacity: 0,
+        const direction = index % 2 === 0 ? 1 : -1;
+        const rotation = (index % 3) * 15 - 15;
+        
+        // Initial position - scattered around viewport
+        gsap.set(img, {
+          x: direction * (200 + index * 100),
+          y: -100 + (index * 80),
+          rotation: rotation,
+          scale: 0.8,
+          opacity: 0,
+        });
+
+        // Entrance animation
+        gsap.to(img, {
+          opacity: 0.9,
+          scale: 1,
+          duration: 1.2,
+          delay: 0.3 + index * 0.1,
+          ease: "power2.out",
+        });
+
+        // Parallax scroll animation
+        gsap.to(img, {
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.5,
           },
-          {
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: 1,
-              // markers: true, // Uncomment for debugging
-            },
-            x: index % 2 === 0 ? '-100%' : '100%',
-            opacity: 1,
-            ease: 'none',
-          }
-        );
+          x: direction * (-300 - index * 80),
+          y: 200 + (index * 60),
+          rotation: rotation + (direction * 20),
+          opacity: 0,
+          ease: 'none',
+        });
+
+        // Floating animation
+        gsap.to(img, {
+          y: "+=20",
+          duration: 2 + (index * 0.3),
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
       });
 
-      // Metrics animation
+      // Metrics animation with counter effect
       gsap.from(".metric-card", {
         scrollTrigger: {
           trigger: ".metrics",
           start: "top 80%",
         },
         opacity: 0,
-        y: 40,
-        stagger: 0.1,
+        y: 50,
+        scale: 0.9,
+        stagger: 0.15,
         duration: 0.8,
-        ease: "power3.out",
+        ease: "back.out(1.4)",
       });
 
-      // Features animation
+      // Features animation with slide and fade
       gsap.from(".feature-item", {
         scrollTrigger: {
           trigger: ".features",
-          start: "top 75%",
+          start: "top 70%",
         },
         opacity: 0,
-        x: -40,
-        stagger: 0.12,
-        duration: 0.8,
+        x: -60,
+        stagger: 0.2,
+        duration: 1,
         ease: "power3.out",
       });
+
+      // Number animations on scroll
+      gsap.utils.toArray(".feature-number").forEach((elem: any) => {
+        gsap.from(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: "top 85%",
+          },
+          opacity: 0,
+          scale: 0.5,
+          rotation: -45,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+        });
+      });
+
+      // CTA section animation
+      gsap.from(".cta-content", {
+        scrollTrigger: {
+          trigger: ".cta-content",
+          start: "top 80%",
+        },
+        opacity: 0,
+        y: 60,
+        duration: 1,
+        ease: "power3.out",
+      });
+
     });
 
     return () => ctx.revert();
   }, []);
 
+
   return (
     <div className="min-h-screen bg-white">
+      {/* Loading overlay */}
+      <div 
+        ref={overlayRef}
+        className="fixed inset-0 bg-[#0d2847] z-[100] flex items-center justify-center"
+      >
+        <div className="text-white text-2xl font-bold">SurgeTech</div>
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-black/5">
+      <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-[#0d2847]/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-black rounded-lg"></div>
-              <span className="text-xl font-semibold tracking-tight">SurgeTech</span>
+              <div className="w-8 h-8 bg-gradient-to-br from-[#0d2847] to-[#1e3a5f] rounded-lg"></div>
+              <span className="text-xl font-semibold tracking-tight text-[#0d2847]">SurgeTech</span>
             </div>
             <div className="hidden md:flex items-center space-x-10">
-              <a href="#features" className="text-sm font-medium text-black/60 hover:text-black transition">Product</a>
-              <a href="#about" className="text-sm font-medium text-black/60 hover:text-black transition">Company</a>
-              <a href="#contact" className="text-sm font-medium text-black/60 hover:text-black transition">Contact</a>
-              <button className="bg-black text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-black/90 transition">
+              <a href="#features" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Product</a>
+              <a href="#about" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Company</a>
+              <a href="#contact" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Contact</a>
+              <button className="bg-[#0d2847] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#081a2f] transition shadow-lg hover:shadow-xl">
                 Request Demo
               </button>
             </div>
@@ -101,7 +199,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section ref={heroRef} className="relative pt-32 pb-20 px-6 lg:px-12 overflow-hidden min-h-screen flex items-center">
+      <section ref={heroRef} className="relative pt-32 pb-20 px-6 lg:px-12 overflow-hidden min-h-screen flex items-center bg-gradient-to-b from-white to-gray-50">
         {/* Animated background images */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {[1, 2, 3, 4, 5, 6].map((num, index) => (
@@ -110,89 +208,102 @@ export default function Home() {
               ref={(el) => {
                 imagesRef.current[index] = el;
               }}
-              className="absolute w-48 h-48 lg:w-64 lg:h-64 rounded-2xl overflow-hidden shadow-2xl"
+              className="absolute w-56 h-56 lg:w-72 lg:h-72 rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
               style={{
                 backgroundImage: `url(/hero${num}.png)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
+                zIndex: 6 - index,
               }}
             >
-              {/* Fallback gradient if images don't load */}
-              <div className="w-full h-full bg-gradient-to-br from-black/20 to-black/40"></div>
+              {/* Overlay with blue tint */}
+              <div className="w-full h-full bg-gradient-to-br from-[#0d2847]/30 to-[#1e3a5f]/40"></div>
             </div>
           ))}
         </div>
 
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="hero-content text-center">
-            <div className="inline-block px-4 py-1.5 bg-white/90 backdrop-blur-sm rounded-full mb-6 border border-black/10">
-              <span className="text-sm font-medium">Used by leading hospitals worldwide</span>
+            <div className="hero-badge inline-block px-5 py-2 bg-gradient-to-r from-[#0d2847]/10 to-[#1e3a5f]/10 backdrop-blur-sm rounded-full mb-8 border border-[#0d2847]/20">
+              <span className="text-sm font-semibold text-[#0d2847]">Trusted by 500+ Leading Hospitals Worldwide</span>
             </div>
             
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-6 bg-white/90 backdrop-blur-sm py-4 px-6 rounded-3xl inline-block">
+            <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-8 text-[#0d2847]">
               Surgical precision<br />
-              powered by AI
+              <span className="bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">powered by AI</span>
             </h1>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-black/80 mb-10 max-w-2xl mx-auto leading-relaxed bg-white/80 backdrop-blur-sm py-4 px-6 rounded-2xl">
+            <p className="hero-subtitle text-lg sm:text-xl lg:text-2xl text-black mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
               Real-time guidance and analytics that help surgeons perform at their best. 
               Every procedure, every time.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="group bg-black text-white px-8 py-4 rounded-lg text-base font-medium hover:bg-black/90 transition flex items-center justify-center shadow-lg hover:shadow-xl">
+            <div className="hero-buttons flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="group bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white px-10 py-4 rounded-lg text-base font-semibold hover:shadow-2xl transition-all duration-300 flex items-center justify-center transform hover:scale-105">
                 <span>Get Started</span>
                 <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
-              <button className="bg-white text-black px-8 py-4 rounded-lg text-base font-medium border border-black/10 hover:border-black/20 transition shadow-lg hover:shadow-xl">
+              <button className="bg-white text-[#0d2847] px-10 py-4 rounded-lg text-base font-semibold border-2 border-[#0d2847]/20 hover:border-[#0d2847] hover:shadow-xl transition-all duration-300 transform hover:scale-105">
                 View Demo
               </button>
             </div>
           </div>
 
-          {/* Visual */}
-          <div className="mt-16 lg:mt-20 max-w-5xl mx-auto">
-            <div className="bg-gradient-to-br from-black/5 to-black/10 rounded-2xl lg:rounded-3xl p-1">
-              <div className="bg-white rounded-[15px] lg:rounded-[22px] overflow-hidden shadow-2xl">
-                <div className="bg-black p-4 lg:p-6 text-white">
-                  <div className="flex items-center justify-between mb-6 lg:mb-8">
+          {/* Enhanced Visual Dashboard */}
+          <div className="hero-visual mt-20 lg:mt-24 max-w-5xl mx-auto">
+            <div className="bg-gradient-to-br from-[#0d2847] to-[#1e3a5f] rounded-3xl p-1 shadow-2xl">
+              <div className="bg-white rounded-[22px] overflow-hidden">
+                <div className="bg-gradient-to-br from-[#0d2847] to-[#1e3a5f] p-6 lg:p-8 text-white">
+                  <div className="flex items-center justify-between mb-8">
                     <div className="flex space-x-2">
-                      <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-white/20"></div>
-                      <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-white/20"></div>
-                      <div className="w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full bg-white/20"></div>
+                      <div className="w-3 h-3 rounded-full bg-white/30 animate-pulse"></div>
+                      <div className="w-3 h-3 rounded-full bg-white/30 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="w-3 h-3 rounded-full bg-white/30 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
                     </div>
-                    <div className="text-xs font-medium text-white/60">OR-2 • Live Session</div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                      <div className="text-xs font-semibold text-white/90">OR-2 • Live Session</div>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-3 gap-3 lg:gap-4">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl p-3 lg:p-4 border border-white/10">
-                      <div className="text-xs text-white/60 mb-1 lg:mb-2">Precision</div>
-                      <div className="text-2xl lg:text-3xl font-bold">99.8%</div>
+                  <div className="grid grid-cols-3 gap-4 lg:gap-6">
+                    <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+                      <div className="text-xs text-white/70 mb-2 font-medium">Precision Rate</div>
+                      <div className="text-3xl lg:text-4xl font-bold">99.8%</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl p-3 lg:p-4 border border-white/10">
-                      <div className="text-xs text-white/60 mb-1 lg:mb-2">Duration</div>
-                      <div className="text-2xl lg:text-3xl font-bold">2.4h</div>
+                    <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+                      <div className="text-xs text-white/70 mb-2 font-medium">Duration</div>
+                      <div className="text-3xl lg:text-4xl font-bold">2.4h</div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg lg:rounded-xl p-3 lg:p-4 border border-white/10">
-                      <div className="text-xs text-white/60 mb-1 lg:mb-2">Status</div>
-                      <div className="text-2xl lg:text-3xl font-bold">●</div>
+                    <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 lg:p-5 border border-white/20 hover:bg-white/15 transition-all duration-300 transform hover:scale-105">
+                      <div className="text-xs text-white/70 mb-2 font-medium">Status</div>
+                      <div className="text-3xl lg:text-4xl font-bold text-green-400">● Live</div>
                     </div>
                   </div>
                 </div>
-                <div className="p-6 lg:p-8">
+                <div className="p-6 lg:p-8 bg-gradient-to-b from-gray-50 to-white">
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between p-3 lg:p-4 bg-black/5 rounded-lg lg:rounded-xl">
-                      <span className="text-sm font-medium">Instrument tracking</span>
-                      <span className="text-sm text-black/60">Active</span>
+                    <div className="flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-sm font-semibold text-[#0d2847]">Instrument tracking</span>
+                      </div>
+                      <span className="text-sm text-[#0d2847]/60 font-medium">Active</span>
                     </div>
-                    <div className="flex items-center justify-between p-3 lg:p-4 bg-black/5 rounded-lg lg:rounded-xl">
-                      <span className="text-sm font-medium">Vital monitoring</span>
-                      <span className="text-sm text-black/60">Normal</span>
+                    <div className="flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-sm font-semibold text-[#0d2847]">Vital monitoring</span>
+                      </div>
+                      <span className="text-sm text-[#0d2847]/60 font-medium">Normal</span>
                     </div>
-                    <div className="flex items-center justify-between p-3 lg:p-4 bg-black/5 rounded-lg lg:rounded-xl">
-                      <span className="text-sm font-medium">AI assistance</span>
-                      <span className="text-sm text-black/60">Enabled</span>
+                    <div className="flex items-center justify-between p-4 lg:p-5 bg-white rounded-xl border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-lg">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-sm font-semibold text-[#0d2847]">AI assistance</span>
+                      </div>
+                      <span className="text-sm text-[#0d2847]/60 font-medium">Enabled</span>
                     </div>
                   </div>
                 </div>
@@ -203,7 +314,28 @@ export default function Home() {
       </section>
 
       {/* Metrics */}
-      
+      <section className="metrics py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            <div className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl">
+              <div className="text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">99.8%</div>
+              <div className="text-sm lg:text-base text-[#0d2847]/60 font-medium">Success rate across 10,000+ procedures</div>
+            </div>
+            <div className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl">
+              <div className="text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">15min</div>
+              <div className="text-sm lg:text-base text-[#0d2847]/60 font-medium">Average time saved per surgery</div>
+            </div>
+            <div className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl">
+              <div className="text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">500+</div>
+              <div className="text-sm lg:text-base text-[#0d2847]/60 font-medium">Hospitals using our platform</div>
+            </div>
+            <div className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl">
+              <div className="text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">24/7</div>
+              <div className="text-sm lg:text-base text-[#0d2847]/60 font-medium">Real-time support available</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Features */}
       <FeatureSection />
