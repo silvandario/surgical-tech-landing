@@ -154,7 +154,7 @@ export default function Home() {
       {/* Loading overlay */}
       <div 
         ref={overlayRef}
-        className="fixed inset-0 bg-[#0d2847] z-[100] flex items-center justify-center"
+        className="fixed inset-0 bg-[#0d2847] z-0 flex items-center justify-center"
       >
         <div className="text-white text-2xl font-bold">SurgeTech</div>
       </div>
@@ -192,7 +192,7 @@ export default function Home() {
                 href="https://www.google.com" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white rounded-lg text-sm font-semibold hover:shadow-lg transition inline-block"
+                className="px-5 py-2  text-[#fff] bg-linear-to-r from-[#0d2847] to-[#1e3a5f] rounded-lg text-sm font-semibold hover:shadow-lg transition inline-block"
               >
                 See Demo
               </Link>
