@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FeatureSection from "./components/FeatureSection";
+import CTA from "./components/CTA";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -229,9 +230,8 @@ export default function Home() {
       <FeatureSection />
 
       {/* CTA */}
-      
-      
-      
+      <CTA />
+
     </div>
   );
 }
