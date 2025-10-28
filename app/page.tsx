@@ -136,6 +136,19 @@ export default function Home() {
     }
   };
 
+  const handleGetStarted = () => {
+    // Scroll to CTA section or handle signup
+    const ctaSection = document.querySelector('.cta-content');
+    if (ctaSection) {
+      ctaSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const handleViewDemo = () => {
+    // Open demo link
+    window.open('https://www.google.com', '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Loading overlay */}
@@ -191,29 +204,29 @@ export default function Home() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative pt-32 pb-20 px-6 lg:px-12 overflow-hidden min-h-screen flex items-center bg-gradient-to-b from-white to-gray-50">
         {/* Animated background images */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
           {[1, 2, 3, 4, 5, 6].map((num, index) => (
             <div
               key={num}
               ref={(el) => {
                 imagesRef.current[index] = el;
               }}
-              className="absolute w-56 h-56 lg:w-72 lg:h-72 rounded-2xl overflow-hidden shadow-2xl border-4 border-white"
+              className="absolute w-56 h-56 lg:w-72 lg:h-72 rounded-2xl overflow-hidden shadow-2xl border-4 border-white pointer-events-none"
               style={{
                 backgroundImage: `url(/hero${num}.png)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                zIndex: 6 - index,
+                zIndex: 0,
               }}
             >
               {/* Overlay with blue tint */}
-              <div className="w-full h-full bg-gradient-to-br from-[#0d2847]/30 to-[#1e3a5f]/40"></div>
+              <div className="w-full h-full bg-gradient-to-br from-[#0d2847]/30 to-[#1e3a5f]/40 pointer-events-none"></div>
             </div>
           ))}
         </div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="hero-content text-center">
+        <div className="max-w-6xl mx-auto relative z-20">
+          <div className="hero-content text-center relative z-20">
             <div className="hero-badge inline-block px-5 py-2 bg-gradient-to-r from-[#0d2847]/10 to-[#1e3a5f]/10 backdrop-blur-sm rounded-full mb-8 border border-[#0d2847]/20">
               <span className="text-sm font-semibold text-[#0d2847]">Trusted by less than 500+ Leading Hospitals Worldwide</span>
             </div>
@@ -228,21 +241,27 @@ export default function Home() {
               Every procedure, every time.
             </p>
 
-            <div className="hero-buttons flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="group bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white px-10 py-4 rounded-lg text-base font-semibold hover:shadow-2xl transition-all duration-300 flex items-center justify-center transform hover:scale-105">
+            <div className="hero-buttons flex flex-col sm:flex-row gap-4 justify-center relative z-30">
+              <button 
+                onClick={handleGetStarted}
+                className="group bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white px-10 py-4 rounded-lg text-base font-semibold hover:shadow-2xl transition-all duration-300 flex items-center justify-center transform hover:scale-105 cursor-pointer pointer-events-auto relative z-30"
+              >
                 <span>Get Started</span>
                 <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </button>
-              <button className="bg-white text-[#0d2847] px-10 py-4 rounded-lg text-base font-semibold border-2 border-[#0d2847]/20 hover:border-[#0d2847] hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+              <button 
+                onClick={handleViewDemo}
+                className="bg-white text-[#0d2847] px-10 py-4 rounded-lg text-base font-semibold border-2 border-[#0d2847]/20 hover:border-[#0d2847] hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer pointer-events-auto relative z-30"
+              >
                 View Demo
               </button>
             </div>
           </div>
 
           {/* Enhanced Visual Dashboard */}
-          <div className="hero-visual mt-20 lg:mt-24 max-w-5xl mx-auto">
+          <div className="hero-visual mt-20 lg:mt-24 max-w-5xl mx-auto relative z-20">
             <div className="bg-gradient-to-br from-[#0d2847] to-[#1e3a5f] rounded-3xl p-1 shadow-2xl">
               <div className="bg-white rounded-[22px] overflow-hidden">
                 <div className="bg-gradient-to-br from-[#0d2847] to-[#1e3a5f] p-6 lg:p-8 text-white">
