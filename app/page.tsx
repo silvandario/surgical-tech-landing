@@ -129,6 +129,12 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -149,14 +155,34 @@ export default function Home() {
               <span className="text-xl font-semibold tracking-tight text-[#0d2847]">SurgeTech</span>
             </div>
             <div className="hidden md:flex items-center space-x-10">
-              <a href="#features" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Product</a>
-              <a href="#about" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Company</a>
-              <a href="#contact" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Contact</a>
-              <button className="bg-[#0d2847] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#081a2f] transition shadow-lg hover:shadow-xl">
-                <Link href="www.google.com">
-                  See Demo
-                </Link>
+              <button 
+                onClick={() => scrollToSection('features')}
+                className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition cursor-pointer bg-transparent border-none p-0"
+              >
+                Product
               </button>
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition cursor-pointer bg-transparent border-none p-0"
+              >
+                Company
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition cursor-pointer bg-transparent border-none p-0"
+              >
+                Contact
+              </button>
+              
+              {/* Button "See Demo" href: www.google.com */}
+              <Link 
+                href="https://www.google.com" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-5 py-2 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white rounded-lg text-sm font-semibold hover:shadow-lg transition inline-block"
+              >
+                See Demo
+              </Link>
             </div>
           </div>
         </div>
