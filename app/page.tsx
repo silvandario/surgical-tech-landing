@@ -225,7 +225,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="hero-content text-center">
             <div className="hero-badge inline-block px-5 py-2 bg-gradient-to-r from-[#0d2847]/10 to-[#1e3a5f]/10 backdrop-blur-sm rounded-full mb-8 border border-[#0d2847]/20">
-              <span className="text-sm font-semibold text-[#0d2847]">Trusted by 500+ Leading Hospitals Worldwide</span>
+              <span className="text-sm font-semibold text-[#0d2847]">Trusted by less than 500+ Leading Hospitals Worldwide</span>
             </div>
             
             <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-8 text-[#0d2847]">
