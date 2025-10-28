@@ -11,11 +11,14 @@ const CTA = () => {
             Join the world's leading hospitals in delivering exceptional surgical outcomes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white px-10 py-4 rounded-lg text-base font-semibold hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-              Schedule Demo
-            </button>
-            <button className="bg-white text-[#0d2847] px-10 py-4 rounded-lg text-base font-semibold border-2 border-[#0d2847]/20 hover:border-[#0d2847] hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              Contact Sales
+            {/* Collect Email */}
+            <input
+              type="email"
+              placeholder="Enter your work email"
+              className="w-full sm:w-auto flex-1 px-5 py-3 border border-[#0d2847]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0d2847]/30 transition"
+            />
+            <button className="px-6 py-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] text-white font-semibold rounded-lg hover:from-[#1e3a5f] hover:to-[#0d2847] transition">
+              Get Started
             </button>
           </div>
         </div>

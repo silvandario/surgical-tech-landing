@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import FeatureSection from "./components/FeatureSection";
 import Metrics from "./components/Metrics";
 import CTA from "./components/CTA";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -152,7 +153,9 @@ export default function Home() {
               <a href="#about" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Company</a>
               <a href="#contact" className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition">Contact</a>
               <button className="bg-[#0d2847] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-[#081a2f] transition shadow-lg hover:shadow-xl">
-                Request Demo
+                <Link href="www.google.com">
+                  See Demo
+                </Link>
               </button>
             </div>
           </div>
