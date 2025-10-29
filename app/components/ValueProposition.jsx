@@ -51,6 +51,17 @@ const ValueProposition = () => {
           <p className="text-base lg:text-lg text-[#0d2847]/70 max-w-2xl mx-auto">
             Surgery isn’t just about outcomes, it’s about trust. Uncovr gives EmilioMeds confidence, reduces risk for patients, and ensures hospitals capture the true value of every operation.
           </p>
+          {/* Image human.png */}
+          <div className="mt-6">
+            <Image
+              src="/human.png"
+              alt="Human Impact"
+              width={800}
+              height={500}
+              className="object-cover rounded-lg shadow-lg"
+              priority
+            />
+          </div>
         </div>
 
       </div>
