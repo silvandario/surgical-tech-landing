@@ -63,10 +63,16 @@ const Metrics = () => {
               ease: "back.out(2)",
             });
             return;
+          } else {
+            // Handle plain numbers (like 1000000000)
+            numValue = parseFloat(text);
           }
 
           if (numValue !== undefined) {
-            gsap.from({ val: 0 }, {
+            // Set initial value to 0
+            const counterObj = { val: 0 };
+            
+            gsap.to(counterObj, {
               scrollTrigger: {
                 trigger: card,
                 start: "top 85%",
@@ -78,13 +84,24 @@ const Metrics = () => {
               delay: index * 0.15 + 0.3,
               ease: "power2.out",
               onUpdate: function() {
-                let currentVal = this.targets()[0].val;
+                let currentVal = counterObj.val;
                 if (hasPercent) {
                   number.textContent = currentVal.toFixed(1) + '%';
                 } else if (text.includes('min')) {
                   number.textContent = Math.round(currentVal) + 'min';
                 } else if (hasPlus) {
                   number.textContent = Math.round(currentVal) + '+';
+                } else {
+                  // Format large numbers with commas or abbreviations
+                  if (numValue >= 1000000000) {
+                    number.textContent = (currentVal / 1000000000).toFixed(1) + 'B+';
+                  } else if (numValue >= 1000000) {
+                    number.textContent = (currentVal / 1000000).toFixed(1) + 'M+';
+                  } else if (numValue >= 1000) {
+                    number.textContent = Math.round(currentVal).toLocaleString() + '+';
+                  } else {
+                    number.textContent = Math.round(currentVal).toString();
+                  }
                 }
               }
             });
@@ -147,16 +164,20 @@ const Metrics = () => {
       className="metrics py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-b from-gray-50 to-white"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-3 lg:grid-cols-3 gap-8 lg:gap-12">
+          
+
+          
+
           <div 
-            ref={el => metricCardsRef.current[0] = el}
+            ref={el => metricCardsRef.current[2] = el}
             className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl cursor-pointer"
           >
             <div className="metric-number text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">
-              99.8%
+              3
             </div>
             <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
-              Success rate across 10,000+ procedures
+              Times more detected anomalies
             </div>
           </div>
 
@@ -165,22 +186,10 @@ const Metrics = () => {
             className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl cursor-pointer"
           >
             <div className="metric-number text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">
-              15min
+              200+
             </div>
             <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
-              Average time saved per surgery
-            </div>
-          </div>
-
-          <div 
-            ref={el => metricCardsRef.current[2] = el}
-            className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl cursor-pointer"
-          >
-            <div className="metric-number text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">
-              500+
-            </div>
-            <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
-              Hospitals using our platform
+              Hours saved per surgeon per year
             </div>
           </div>
 
@@ -189,10 +198,10 @@ const Metrics = () => {
             className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl cursor-pointer"
           >
             <div className="metric-number text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">
-              24/7
+              1+
             </div>
             <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
-              Real-time support available
+              Million CHF saved per year per institution
             </div>
           </div>
         </div>

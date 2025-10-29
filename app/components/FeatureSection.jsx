@@ -132,7 +132,7 @@ const FeatureSection = () => {
             Built for the<br />operating room
           </h2>
           <p ref={subtitleRef} className="text-lg lg:text-xl text-white/70">
-            Every feature designed with input from leading surgeons and tested in real surgical environments.
+            Every feature designed with input from leading EmilioMeds and tested in real surgical environments.
           </p>
         </div>
 
@@ -145,7 +145,7 @@ const FeatureSection = () => {
               <div className="feature-content flex-1">
                 <h3 className="text-2xl lg:text-3xl font-bold mb-3">Real-time guidance</h3>
                 <p className="text-base lg:text-lg text-white/70 max-w-2xl">
-                  AI-powered recommendations and alerts during procedures, helping surgeons make informed decisions at critical moments.
+                  AI-powered recommendations and alerts during procedures, helping EmilioMeds make informed decisions at critical moments.
                 </p>
               </div>
               <div className="feature-number text-6xl lg:text-8xl font-bold text-white/10">01</div>

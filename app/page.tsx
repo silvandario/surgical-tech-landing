@@ -7,6 +7,10 @@ import FeatureSection from "./components/FeatureSection";
 import Metrics from "./components/Metrics";
 import CTA from "./components/CTA";
 import Link from "next/link";
+import ValueProposition from "./components/ValueProposition";
+import Team from "./components/Team";
+import Image from "next/image";
+import Video from "./components/Video";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -156,16 +160,20 @@ export default function Home() {
         ref={overlayRef}
         className="fixed inset-0 bg-[#0d2847] z-0 flex items-center justify-center"
       >
-        <div className="text-white text-2xl font-bold">SurgeTech</div>
+        <div className="text-white text-2xl font-bold">EmilioMed</div>
       </div>
 
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-[#0d2847]/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#0d2847] to-[#1e3a5f] rounded-lg"></div>
-              <span className="text-xl font-semibold tracking-tight text-[#0d2847]">SurgeTech</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-linear-to-br from-[#0d2847] to-[#1e3a5f] rounded-lg flex items-center justify-center overflow-hidden">
+                {/* Prefer `logo.png` in public folder; fallback to `impact.png` then `file.svg` */}
+                <Image src="/logo.png" alt="EmilioMed logo" width={36} height={36} className="object-contain" onError={(e)=>{ /* next/image onError not supported in SSR; fallback handled by user if file missing */ }} />
+              </div>
+
+              <span className="text-xl font-semibold tracking-tight text-[#0d2847]">EmilioMed</span>
             </div>
             <div className="hidden md:flex items-center space-x-10">
               <button 
@@ -188,14 +196,16 @@ export default function Home() {
               </button>
               
               {/* Button "See Demo" href: www.google.com */}
+              <button className="text-white text-bold">
               <Link 
                 href="https://www.google.com" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2  text-[#fff] bg-linear-to-r from-[#0d2847] to-[#1e3a5f] rounded-lg text-sm font-semibold hover:shadow-lg transition inline-block"
+                className="px-5 py-2  text-white bg-linear-to-r from-[#0d2847] to-[#1e3a5f] rounded-lg text-sm hover:shadow-lg transition inline-block"
               >
                 See Demo
               </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -238,7 +248,7 @@ export default function Home() {
             </h1>
 
             <p className="hero-subtitle text-lg sm:text-xl lg:text-2xl text-black mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
-              Real-time guidance and analytics that help surgeons perform at their best. 
+              Real-time guidance and analytics that help EmilioMeds perform at their best. 
               Every procedure, every time.
             </p>
 
@@ -331,9 +341,16 @@ export default function Home() {
       {/* Features */}
       <FeatureSection />
 
+      {/* Value Proposition */}
+      <ValueProposition />
+
+      {/* <Video /> */}
+
       {/* CTA */}
       <CTA />
 
+      {/* Team */}
+      <Team />
     </div>
   );
 }
