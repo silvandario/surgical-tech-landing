@@ -247,8 +247,7 @@ export default function Home() {
             </h1>
 
             <p className="hero-subtitle text-lg sm:text-xl lg:text-2xl text-black mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
-              Real-time guidance and analytics that help EmilioMeds perform at their best. 
-              Every procedure, every time.
+              Through seamless documentation and precise recognition, EmilioMed provides the ecosystem for surgeons to focus on what matters most - the patient.
             </p>
 
             <div className="hero-buttons flex flex-col sm:flex-row gap-4 justify-center relative z-40">

@@ -10,32 +10,28 @@ const ValueProposition = () => {
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h3 className="text-sm font-semibold text-[#0d2847]/70 mb-3">THE VALUE</h3>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0d2847] mb-4">
-            Operative notes & Billing capture, reimagined.
+            Two areas. One solution.
           </h2>
           <p className="text-base lg:text-lg text-[#0d2847]/70 max-w-2xl mx-auto">
-            Less admin. More precision. More revenue.
+            Explore <span className="font-semibold">EmilioMed Voice</span> and <span className="font-semibold">EmilioMed Vision</span>.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           <div className="card p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:shadow-xl transition cursor-default">
-            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">Operative Note Drafting</div>
-            <div className="text-sm text-[#0d2847]/70">Reduce op-note time by 80%</div>
+            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">Automated intraoperative documentation</div>
+            <div className="text-sm text-[#0d2847]/70">through voice commands</div>
           </div>
 
           <div className="card p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:shadow-xl transition cursor-default">
-            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">Compliant, structured output</div>
-            <div className="text-sm text-[#0d2847]/70">Seamlessly integrates with your EHR</div>
+            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">Tissue recognition and anomalies tagging</div>
+            <div className="text-sm text-[#0d2847]/70">automatically or through voice commands</div>
           </div>
-
-          <div className="card p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:shadow-xl transition cursor-default">
-            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">+15% avg. billing capture</div>
-            <div className="text-sm text-[#0d2847]/70">= $800 missed per case</div>
-          </div>
-
-          <div className="card p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:shadow-xl transition cursor-default">
-            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">Video proof for compliance</div>
-            <div className="text-sm text-[#0d2847]/70">Fewer missed events.</div>
+        </div>
+        <div className="grid grid-cols-1 mt-4 gap-6 lg:gap-8">
+        <div className="card p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:shadow-xl transition cursor-default text-center">
+            <div className="text-2xl lg:text-3xl font-bold text-[#0d2847] mb-2">Our solution fits your set up</div>
+            <div className="text-sm text-[#0d2847]/70">fully compatible, fully integrated</div>
           </div>
         </div>
       </div>
@@ -46,10 +42,10 @@ const ValueProposition = () => {
           <h3 className="text-sm font-semibold text-[#0d2847]/70 mb-3">HUMAN IMPACT</h3>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0d2847] mb-4">
             Because behind every
-            <br />procedure is a patient.
+            <br />procedure is a human.
           </h2>
           <p className="text-base lg:text-lg text-[#0d2847]/70 max-w-2xl mx-auto">
-            Surgery isn’t just about outcomes, it’s about trust. Uncovr gives EmilioMeds confidence, reduces risk for patients, and ensures hospitals capture the true value of every operation.
+            Surgery is about trust between patient and surgeon. To build that trust, EmilioMed designed its solution in close collaboration with surgeons, ensuring it meets the highest standards of care and reliability - as well as the human touch.
           </p>
           {/* Image human.png */}
           <div className="mt-6">

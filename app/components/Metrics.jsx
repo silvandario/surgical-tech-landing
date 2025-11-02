@@ -174,10 +174,13 @@ const Metrics = () => {
             className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl cursor-pointer"
           >
             <div className="metric-number text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">
-              3
+              50%
             </div>
             <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
-              Times more detected anomalies
+              Time spent on documentation and EHR 
+            </div>
+            <div className="metric-source text-xs lg:text-sm text-red-500 mt-3 font-medium">
+              Resource allocation inefficiency
             </div>
           </div>
 
@@ -191,6 +194,9 @@ const Metrics = () => {
             <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
               Hours saved per surgeon per year
             </div>
+            <div className="metric-source text-xs lg:text-sm text-green-500 mt-3 font-medium">
+              Direct impact of our solution
+            </div>
           </div>
 
           <div 
@@ -198,10 +204,13 @@ const Metrics = () => {
             className="metric-card text-center p-6 rounded-2xl bg-white border-2 border-[#0d2847]/10 hover:border-[#0d2847]/30 transition-all duration-300 hover:shadow-xl cursor-pointer"
           >
             <div className="metric-number text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">
-              1+
+              15+
             </div>
             <div className="metric-description text-sm lg:text-base text-[#0d2847]/60 font-medium">
-              Million CHF saved per year per institution
+              Medical professionals involved
+            </div>
+            <div className="metric-source text-xs lg:text-sm text-blue-500 mt-3 font-medium">
+              Tailored and validated with experts
             </div>
           </div>
         </div>

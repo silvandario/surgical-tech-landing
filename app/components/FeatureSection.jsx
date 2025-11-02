@@ -132,7 +132,7 @@ const FeatureSection = () => {
             Built for the<br />operating room
           </h2>
           <p ref={subtitleRef} className="text-lg lg:text-xl text-white/70">
-            Every feature designed with input from leading EmilioMeds and tested in real surgical environments.
+            Every feature designed with input from true surgical professionals to enhance workflow, improve accuracy, and support better patient outcomes.
           </p>
         </div>
 
@@ -143,9 +143,9 @@ const FeatureSection = () => {
           >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="feature-content flex-1">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Real-time guidance</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Real-time documentation</h3>
                 <p className="text-base lg:text-lg text-white/70 max-w-2xl">
-                  AI-powered recommendations and alerts during procedures, helping EmilioMeds make informed decisions at critical moments.
+                  50% of surgical time is spent on documentation. Our voice-based documentation automates this process, allowing a more efficient allocation of time.
                 </p>
               </div>
               <div className="feature-number text-6xl lg:text-8xl font-bold text-white/10">01</div>
@@ -158,9 +158,9 @@ const FeatureSection = () => {
           >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="feature-content flex-1">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Instrument tracking</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Spotting the unspottables</h3>
                 <p className="text-base lg:text-lg text-white/70 max-w-2xl">
-                  Computer vision tracks every instrument with millimeter precision, ensuring nothing is misplaced.
+                  Computer vision tracks every anomaly with millimeter precision, ensuring nothing is overlooked. Four eyes see more than two.
                 </p>
               </div>
               <div className="feature-number text-6xl lg:text-8xl font-bold text-white/10">02</div>
@@ -173,9 +173,9 @@ const FeatureSection = () => {
           >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
               <div className="feature-content flex-1">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Predictive analytics</h3>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Hardware agnostic</h3>
                 <p className="text-base lg:text-lg text-white/70 max-w-2xl">
-                  Machine learning models predict potential complications before they occur, improving patient outcomes.
+                  Our solution integrates seamlessly with your existing setup, requiring no additional hardware investments.
                 </p>
               </div>
               <div className="feature-number text-6xl lg:text-8xl font-bold text-white/10">03</div>
@@ -187,10 +187,11 @@ const FeatureSection = () => {
             className="feature-item border-t border-white/10 py-8 lg:py-10 border-b hover:bg-white/5 transition-all duration-300 rounded-lg px-4 cursor-pointer"
           >
             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-              <div className="feature-content flex-1">
-                <h3 className="text-2xl lg:text-3xl font-bold mb-3">Team coordination</h3>
+              <div className="feature-content flex-1"
+              onClick={() => window.location.href = '#cta'}>
+                <h3 className="text-2xl lg:text-3xl font-bold mb-3">One click away</h3>
                 <p className="text-base lg:text-lg text-white/70 max-w-2xl">
-                  Seamless communication tools keep the entire surgical team synchronized throughout the procedure.
+                  Subscribe to our service with minimal setup time and start benefiting from enhanced surgical precision immediately.
                 </p>
               </div>
               <div className="feature-number text-6xl lg:text-8xl font-bold text-white/10">04</div>

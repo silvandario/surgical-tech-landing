@@ -25,10 +25,10 @@ const CTA = () => {
     <section className="relative cta-content py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-b from-white to-gray-50 overflow-hidden" id="cta">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 lg:mb-8 tracking-tight leading-tight text-[#0d2847]">
-          Ready to elevate<br />your practice?
+          Ready to make<br />the next step?
         </h2>
         <p className="text-lg lg:text-xl text-[#0d2847]/60 mb-10 lg:mb-12 max-w-2xl mx-auto">
-          Join the world's leading hospitals in delivering exceptional surgical outcomes.
+          We are striving for exceptional surgical outcomes.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <input

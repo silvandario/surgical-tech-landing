@@ -45,7 +45,7 @@ const Team = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-[#0d2847]">Meet the team</h2>
-          <p className="text-sm text-[#0d2847]/70 mt-2">Clinicians, engineers and operators building better surgical tools.</p>
+          <p className="text-sm text-[#0d2847]/70 mt-2">Diversity of skillset, unity of purpose.</p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 align-middle object-center">
