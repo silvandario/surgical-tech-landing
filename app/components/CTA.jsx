@@ -22,7 +22,7 @@ const CTA = () => {
   };
 
   return (
-    <section className="relative cta-content py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+    <section className="relative cta-content py-20 lg:py-32 px-6 lg:px-12 bg-gradient-to-b from-white to-gray-50 overflow-hidden" id="cta">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 lg:mb-8 tracking-tight leading-tight text-[#0d2847]">
           Ready to elevate<br />your practice?

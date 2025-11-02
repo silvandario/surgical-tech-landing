@@ -5,7 +5,7 @@ import React from 'react'
 
 const ValueProposition = () => {
   return (
-  <section className="value-proposition py-20 lg:py-28 px-6 lg:px-12 bg-linear-to-b from-white to-gray-50">
+  <section className="value-proposition py-20 lg:py-28 px-6 lg:px-12 bg-linear-to-b from-white to-gray-50" id="company">
       <div className="max-w-6xl mx-auto">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h3 className="text-sm font-semibold text-[#0d2847]/70 mb-3">THE VALUE</h3>

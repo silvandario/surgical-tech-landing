@@ -5,37 +5,37 @@ const members = [
     name: 'Feisal',
     role: 'Chief Product Officer',
     img: '/team/image1.png',
-    quote: 'Hier könnte Ihre Werbung stehen.'
+    quote: 'Ensures the fit between surgeons and EmilioMed.'
   },
   {
     name: 'Isotta',
-    role: 'Chief AI Officer',
-    img: '/team/image1.png',
-    quote: 'Hier könnte Ihre Werbung stehen.'
+    role: 'Chief AI & ML Engineer',
+    img: '/team/image2.png',
+    quote: 'Empowers surgeons with intelligent tools.'
   },
   {
     name: 'Gabriele',
-    role: 'Chief Computer Vision Officer',
-    img: '/team/image1.png',
-    quote: 'Hier könnte Ihre Werbung stehen.'
-  },
-  {
-    name: 'Reto',
-    role: 'Chief Slides Officer',
-    img: '/team/image1.png',
-    quote: 'Hier könnte Ihre Werbung stehen.'
+    role: 'Chief Computer Vision Engineer',
+    img: '/team/image3.png',
+    quote: 'See the unseen, especially in surgery.'
   },
   {
     name: 'Silvan',
-    role: 'Chief Prompting Officer',
-    img: '/team/image1.png',
-    quote: 'Hier könnte Ihre Werbung stehen.'
+    role: 'Chief Web Engineer',
+    img: '/team/image4.png',
+    quote: 'Building interfaces, experiences and connections.'
+  },
+  {
+    name: 'Reto',
+    role: 'Chief Compliance Officer',
+    img: '/team/image5.png',
+    quote: 'Navigating the complexities of medical regulations.'
   },
   {
     name: 'Marco',
-    role: 'Chief Sales Officer',
-    img: '/team/image1.png',
-    quote: 'Hier könnte Ihre Werbung stehen.'
+    role: 'Chief Sales & Marketing Officer',
+    img: '/team/image6.png',
+    quote: 'Driving growth through innovative marketing strategies.'
   }
 ]
 

@@ -184,13 +184,13 @@ export default function Home() {
                 Product
               </button>
               <button 
-                onClick={() => scrollToSection('about')}
+                onClick={() => scrollToSection('company')}
                 className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition cursor-pointer bg-transparent border-none p-0"
               >
                 Company
               </button>
               <button 
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection('cta')}
                 className="text-sm font-medium text-[#0d2847]/60 hover:text-[#0d2847] transition cursor-pointer bg-transparent border-none p-0"
               >
                 Contact
@@ -199,9 +199,7 @@ export default function Home() {
               {/* Button "See Demo" href: www.google.com */}
               <button className="text-white text-bold">
               <Link 
-                href="https://www.google.com" 
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#cta"
                 className="px-5 py-2  text-white bg-linear-to-r from-[#0d2847] to-[#1e3a5f] rounded-lg text-sm hover:shadow-lg transition inline-block"
               >
                 See Demo
@@ -244,8 +242,8 @@ export default function Home() {
             </div>
             
             <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tight leading-[1.05] mb-8 text-[#0d2847]">
-              Surgical precision<br />
-              <span className="bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">powered by AI</span>
+              See More.<br />
+              <span className="bg-gradient-to-r from-[#0d2847] to-[#1e3a5f] bg-clip-text text-transparent">Document Less.</span>
             </h1>
 
             <p className="hero-subtitle text-lg sm:text-xl lg:text-2xl text-black mb-12 max-w-2xl mx-auto leading-relaxed font-bold">
