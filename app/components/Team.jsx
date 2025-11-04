@@ -27,7 +27,7 @@ const members = [
   },
   {
     name: 'Reto',
-    role: 'Chief Compliance Officer',
+    role: 'Chief Operations Officer',
     img: '/team/image5.png',
     quote: 'Navigating the complexities of medical regulations.'
   },
